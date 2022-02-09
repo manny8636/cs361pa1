@@ -36,6 +36,8 @@ struct fsm
 
   // TODO: Extend this with additional fields you need to hold information
   // during the execution of your FSM.
+  char next_valid;
+  event_t next_event;
 };
 
 // Generic entry point for handling events
