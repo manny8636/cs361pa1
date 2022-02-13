@@ -2,6 +2,8 @@
 #include <stdlib.h>
 
 #include "statemodel.h"
+#include "stringmodel.h"
+#include <string.h>
 
 /* Begins at fsm->current and tries to identify a string in the given
    input data. A string begins and ends with ". In between, only two
@@ -14,9 +16,49 @@
    access to local variables here; instead, you should extend the fsm_t
    declaration to include helper variables, such as a buffer to copy the
    input bytes into.) */
-bool
-accept_string (fsm_t *fsm, char **result)
+bool accept_string(fsm_t *fsm, char **result)
 {
+
+  // should the generic handle_event be called here?
+
+  // read the input string in a loop
+
+  event_t evt = NIL_CHAR;
+  char *input_ch;
+  char *prior_input_ch = "";
+
+  // fsm->input
+  char *walker = fsm->input;
+  int cnt = 0;
+
+  while (*walker != '\0')
+  {
+    input_ch = walker;
+    if (!strcmp(input_ch, "\"") && cnt == 0)
+      evt = OPEN_QUOTE;
+    else if (!strcmp(input_ch, "\"") && cnt == strlen(fsm->input))
+      evt = CLOSE_QUOTE;
+    else if (!strcmp(input_ch, "\\") && !strcmp(prior_input_ch, "\\"))
+      evt = BACKSLASH;
+    else if (!strcmp(input_ch, "\\"))
+      evt = ESC_CHAR;
+    else
+      evt = NON_CTRL;
+
+    strcpy(prior_input_ch, input_ch);
+    walker++;
+    cnt++;
+
+    handle_event(fsm, evt);
+  }
+
+  // when accepting is done, we point the result to the fsm built buffer
+  if (fsm->final)
+  {
+    result = &fsm->buffer;
+    fsm->final = true;
+  }
+
   return false;
 }
 
@@ -30,8 +72,7 @@ accept_string (fsm_t *fsm, char **result)
    should be copied into the location pointed to by the call-by-reference
    parameter value and the function should return true. Otherwise, return
    false. */
-bool
-accept_integer (fsm_t *fsm, int64_t *value)
+bool accept_integer(fsm_t *fsm, int64_t *value)
 {
   return false;
 }
@@ -44,8 +85,7 @@ accept_integer (fsm_t *fsm, int64_t *value)
    Returns true only if a valid string or integer value was accepted.
    If a value was successully parsed, sets the is_string, string, and
    value call-by-reference parameters as appropriate. */
-bool
-accept_value (fsm_t *fsm, bool *is_string, char **string, int64_t *value)
+bool accept_value(fsm_t *fsm, bool *is_string, char **string, int64_t *value)
 {
   return false;
 }
@@ -84,8 +124,7 @@ accept_value (fsm_t *fsm, bool *is_string, char **string, int64_t *value)
 
    Return true if the object is successfully parsed, false otherwise.
    */
-bool
-accept_object (fsm_t *fsm, char **keys)
+bool accept_object(fsm_t *fsm, char **keys)
 {
   return false;
 }

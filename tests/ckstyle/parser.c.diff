@@ -1,0 +1,42 @@
+--- ../parser.c	2022-02-13 13:36:18.846693436 -0500
++++ ckstyle/parser.c.gnu	2022-02-13 13:37:55.263632883 -0500
+@@ -14,7 +14,8 @@
+    access to local variables here; instead, you should extend the fsm_t
+    declaration to include helper variables, such as a buffer to copy the
+    input bytes into.) */
+-bool accept_string(fsm_t *fsm, char **result)
++bool
++accept_string (fsm_t *fsm, char **result)
+ {
+ 
+   // should the generic handle_event be called here?
+@@ -37,7 +38,8 @@
+    should be copied into the location pointed to by the call-by-reference
+    parameter value and the function should return true. Otherwise, return
+    false. */
+-bool accept_integer(fsm_t *fsm, int64_t *value)
++bool
++accept_integer (fsm_t *fsm, int64_t *value)
+ {
+   return false;
+ }
+@@ -50,7 +52,8 @@
+    Returns true only if a valid string or integer value was accepted.
+    If a value was successully parsed, sets the is_string, string, and
+    value call-by-reference parameters as appropriate. */
+-bool accept_value(fsm_t *fsm, bool *is_string, char **string, int64_t *value)
++bool
++accept_value (fsm_t *fsm, bool *is_string, char **string, int64_t *value)
+ {
+   return false;
+ }
+@@ -89,7 +92,8 @@
+ 
+    Return true if the object is successfully parsed, false otherwise.
+    */
+-bool accept_object(fsm_t *fsm, char **keys)
++bool
++accept_object (fsm_t *fsm, char **keys)
+ {
+   return false;
+ }

@@ -1,0 +1,6 @@
+--- outputs/PART_string_escapes.txt	2022-02-13 13:37:41.919502869 -0500
++++ expected/PART_string_escapes.txt	2021-01-25 15:27:24.000000000 -0500
+@@ -1 +1,2 @@
+-STRING: Success!
++STRING: 'This "is" okay to do. Here is a \ backslash.'
++Success!

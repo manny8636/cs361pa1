@@ -1,0 +1,8 @@
+--- outputs/FULL_json_int.txt	2022-02-13 13:37:52.643607356 -0500
++++ expected/FULL_json_int.txt	2021-01-25 15:27:24.000000000 -0500
+@@ -1 +1,5 @@
++Key-value pairs:
++{
++KEYS[keyName] = 125
++}
+ Success!

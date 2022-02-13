@@ -28,6 +28,6 @@ typedef enum
 } strevt_t;
 #define NSTR_EVENTS NIL_CHAR
 
-fsm_t *string_init (char const *);
+fsm_t *string_init(char const *);
 
 #endif

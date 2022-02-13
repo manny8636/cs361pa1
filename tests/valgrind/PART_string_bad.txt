@@ -1,0 +1,33 @@
+==3062472== Memcheck, a memory error detector
+==3062472== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3062472== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3062472== Command: ../json -s ../data/string_bad.txt
+==3062472== 
+==3062472== Conditional jump or move depends on uninitialised value(s)
+==3062472==    at 0x48DB1C2: __vfprintf_internal (vfprintf-internal.c:1688)
+==3062472==    by 0x48C5EBE: printf (printf.c:33)
+==3062472==    by 0x10945D: main (main.c:82)
+==3062472== 
+==3062472== Use of uninitialised value of size 8
+==3062472==    at 0x483EF46: strlen (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3062472==    by 0x48DCE94: __vfprintf_internal (vfprintf-internal.c:1688)
+==3062472==    by 0x48C5EBE: printf (printf.c:33)
+==3062472==    by 0x10945D: main (main.c:82)
+==3062472== 
+STRING: Success!
+==3062472== 
+==3062472== HEAP SUMMARY:
+==3062472==     in use at exit: 123 bytes in 2 blocks
+==3062472==   total heap usage: 5 allocs, 3 frees, 16,979 bytes allocated
+==3062472== 
+==3062472== LEAK SUMMARY:
+==3062472==    definitely lost: 96 bytes in 1 blocks
+==3062472==    indirectly lost: 27 bytes in 1 blocks
+==3062472==      possibly lost: 0 bytes in 0 blocks
+==3062472==    still reachable: 0 bytes in 0 blocks
+==3062472==         suppressed: 0 bytes in 0 blocks
+==3062472== Rerun with --leak-check=full to see details of leaked memory
+==3062472== 
+==3062472== Use --track-origins=yes to see where uninitialised values come from
+==3062472== For lists of detected and suppressed errors, rerun with: -s
+==3062472== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

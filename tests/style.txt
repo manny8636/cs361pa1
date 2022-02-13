@@ -1,0 +1,15 @@
+intmodel.c                     pass
+intmodel.h                     pass
+main.c                         FAIL (see ckstyle/main.c.diff for details)
+objmodel.c                     pass
+objmodel.h                     pass
+parser.c                       FAIL (see ckstyle/parser.c.diff for details)
+parser.h                       pass
+statemodel.c                   pass
+statemodel.h                   FAIL (see ckstyle/statemodel.h.diff for details)
+stringmodel.c                  FAIL (see ckstyle/stringmodel.c.diff for details)
+stringmodel.h                  FAIL (see ckstyle/stringmodel.h.diff for details)
+valmodel.c                     pass
+valmodel.h                     pass
+Code that does not adhere to GNU standards will not be accepted.
+You must fix these files before submission.
