@@ -15,7 +15,9 @@ typedef int event_t;
 typedef struct fsm fsm_t;
 
 // All entry, exit, and effect instances use the action type
-typedef void (*action_t)(fsm_t *);
+typedef void (*action_t) (fsm_t *);
+
+#define BUFFER_LENGTH 2000
 
 // Generic FSM structure with pointers to the transition, effect, and
 // entry tables. Note that transitions and effects should point to
@@ -28,7 +30,7 @@ struct fsm
   size_t nevents; /* number of events for this FSM */
 
   /* pointer to the FSM's transition function */
-  state_t (*transition)(struct fsm *, event_t, action_t *, action_t *);
+  state_t (*transition) (struct fsm *, event_t, action_t *, action_t *);
 
   // Pointers to the input text, including the current byte being processed
   char const *input;
@@ -36,19 +38,18 @@ struct fsm
 
   // TODO: Extend this with additional fields you need to hold information
   // during the execution of your FSM.
-
-  bool final; /* set on accept or reject */
-
-  // buffer to contain parse output
-  char *buffer;
+  // char *buffer;
+  // size_t length;
+  // size_t buffer_size;
+  char buffer[BUFFER_LENGTH];
   size_t length;
-  size_t buffer_size;
-  char *last_appended_char;
-  char *last_input_char;
-  event_t next_event;
+
+  int value;
+  int multiplier;
+  bool negative;
 };
 
 // Generic entry point for handling events
-void handle_event(fsm_t *fsm, event_t event);
+void handle_event (fsm_t *fsm, event_t event);
 
 #endif

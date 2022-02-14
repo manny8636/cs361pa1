@@ -1,5 +1,5 @@
---- ../stringmodel.h	2022-02-13 13:37:26.535352977 -0500
-+++ ckstyle/stringmodel.h.gnu	2022-02-13 13:37:55.439634597 -0500
+--- ../stringmodel.h	2022-02-13 17:48:24.350294361 -0500
++++ ckstyle/stringmodel.h.gnu	2022-02-14 17:13:44.857000296 -0500
 @@ -28,6 +28,6 @@
  } strevt_t;
  #define NSTR_EVENTS NIL_CHAR

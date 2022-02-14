@@ -1,6 +1,5 @@
---- outputs/PART_int_bad.txt	2022-02-13 13:37:43.163514989 -0500
-+++ expected/PART_int_bad.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -1 +1,2 @@
--Success!
+--- outputs/PART_int_bad.txt	2022-02-14 17:19:49.988423244 -0500
++++ expected/PART_int_bad.txt	2022-02-13 17:48:24.374294593 -0500
+@@ -0,0 +1,2 @@
 +SYNTAX ERROR: 'j' is not a valid digit
 +Parsing ../data/int_bad.txt failed

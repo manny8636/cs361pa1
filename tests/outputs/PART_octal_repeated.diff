@@ -1,5 +1,0 @@
---- outputs/PART_octal_repeated.txt	2022-02-13 13:37:44.979532683 -0500
-+++ expected/PART_octal_repeated.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -1 +1,2 @@
-+INTEGER: 93
- Success!

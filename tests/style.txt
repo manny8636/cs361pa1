@@ -6,7 +6,7 @@ objmodel.h                     pass
 parser.c                       FAIL (see ckstyle/parser.c.diff for details)
 parser.h                       pass
 statemodel.c                   pass
-statemodel.h                   FAIL (see ckstyle/statemodel.h.diff for details)
+statemodel.h                   pass
 stringmodel.c                  FAIL (see ckstyle/stringmodel.c.diff for details)
 stringmodel.h                  FAIL (see ckstyle/stringmodel.h.diff for details)
 valmodel.c                     pass

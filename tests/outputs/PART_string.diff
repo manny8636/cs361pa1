@@ -1,6 +1,0 @@
---- outputs/PART_string.txt	2022-02-13 13:37:40.067484824 -0500
-+++ expected/PART_string.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -1 +1,2 @@
--STRING: Success!
-+STRING: 'I am a simple string'
-+Success!

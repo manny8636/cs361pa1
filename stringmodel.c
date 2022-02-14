@@ -1,17 +1,33 @@
 #include <stdbool.h>
 #include <stdlib.h>
-#include <string.h>
-
 #include <stdio.h>
+#include <string.h>
+#include <assert.h>
 
 #include "statemodel.h"
 #include "stringmodel.h"
 
-static void AdvancePointer(fsm_t *);
-static void AllocateBuffer(fsm_t *);
-static void AppendCharacter(fsm_t *);
-static void ReplaceCharacter(fsm_t *);
-static void SyntaxError(fsm_t *);
+static state_t parse_transition (fsm_t *, event_t, action_t *, action_t *);
+
+static void AdvancePointer (fsm_t *);
+static void AllocateBuffer (fsm_t *);
+static void AppendCharacter (fsm_t *);
+static void ReplaceCharacter (fsm_t *);
+static void SyntaxError (fsm_t *);
+
+/* Return an FSM that links to these internals */
+fsm_t *
+string_init (char const *input)
+{
+  fsm_t *fsm = calloc (1, sizeof (fsm_t));
+  fsm->nevents = NSTR_EVENTS;
+  fsm->state = STR_INIT;  
+  fsm->transition = &parse_transition;
+  fsm->input = input;
+  fsm->current = input;
+
+  return fsm;
+}
 
 /* Define additional functions or global data structures for this specific
    FSM. IMPORTANT: You must declare all such additional declarations as static
@@ -24,112 +40,77 @@ static void SyntaxError(fsm_t *);
 // successfully processed and the next character causing the
 // error.
 // printf ("SYNTAX ERROR: '%c%c' is not a valid escape code\n",
-
-// /////////////////// EFFECT FUNCTIONS ////////////////////
-
-static state_t parse_transition(fsm_t *fsm, event_t event, action_t *effect, action_t *entry);
-// fsm->transition = &parse_transition
-
-// static void accept(fsm_t *);
-// static void reject(fsm_t *);
-
-static state_t const _transition[NSTR_STATES][NSTR_EVENTS] = {
-    // OPEN_QUOTE NON_CTRL BACKSLASH NO_ESC ESC_CHAR CLOSE_QUOTE
-    {BUILDING, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR},    // ENTER
-    {NON_STR, BUILDING, ESCAPE, NON_STR, NON_STR, STR_FINISH},  // BUILDING
-    {NON_STR, NON_STR, NON_STR, STR_FINISH, BUILDING, NON_STR}, // ESCAPE
+static state_t const _transitions[NSTR_STATES][NSTR_EVENTS] = {
+  // OPEN_QUOTE CLOSE_QUOTE NON_CTRL BACKSLASH ESC_CHAR NO_ESC
+  { BUILDING, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR }, // STR_INIT
+  { NON_STR, STR_FINISH, BUILDING, ESCAPE, NON_STR, NON_STR }, // BUILDING
+  { NON_STR, NON_STR, NON_STR, NON_STR, BUILDING, STR_ERROR }, // ESCAPE
+  { NON_STR, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR }, // STR_FINISH
+  { NON_STR, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR }  // STR_ERROR
 };
-
 static action_t const _effect[NSTR_STATES][NSTR_EVENTS] = {
-    // OPEN_QUOTE NON_CTRL BACKSLASH NO_ESC ESC_CHAR CLOSE_QUOTE
-    {AllocateBuffer, NULL, NULL, NULL, NULL, NULL},            // ENTER
-    {NULL, AppendCharacter, NULL, NULL, NULL, AdvancePointer}, // BUILDING
-    {NULL, NULL, NULL, SyntaxError, ReplaceCharacter, NULL},   // ESCAPE
+  // OPEN_QUOTE CLOSE_QUOTE NON_CTRL BACKSLASH ESC_CHAR NO_ESC
+  { AllocateBuffer, NULL, NULL, NULL, NULL, NULL }, // STR_INIT
+  { NULL, AdvancePointer, AppendCharacter, NULL, NULL, NULL }, // BUILDING
+  { NULL, NULL, NULL, NULL, ReplaceCharacter, SyntaxError }, // ESCAPE
+  { NULL, NULL, NULL, NULL, NULL, NULL }, // STR_FINISH
+  { NULL, NULL, NULL, NULL, NULL, NULL }  // STR_ERROR
 };
-
-static action_t const _entryArr[NSTR_STATES] =
-    {NULL, NULL}; // NEW
-
-/* Return an FSM that links to these internals */
-fsm_t *
-string_init(char const *input)
+// /////////////////// EFFECT FUNCTIONS ////////////////////
+static state_t
+parse_transition (fsm_t *fsm, event_t event, action_t *effect, action_t *entry)
 {
-   fsm_t *fsm = calloc(1, sizeof(fsm_t));
-   fsm->nevents = NSTR_EVENTS;
-   fsm->state = STR_INIT;
-   fsm->transition = parse_transition;
-
-   /* Set up internal fields for keeping track of characters */
-   fsm->input = input;
-   fsm->next_event = OPEN_QUOTE;
-   fsm->final = false;
-
-   return fsm;
+  if (fsm->state >= NON_STR || _transitions[fsm->state][event] == NON_STR)
+    return -1;
+  *effect = _effect[fsm->state][event];
+  state_t next = _transitions[fsm->state][event];
+  return next;
 }
 
 /* Used to move beyond the quote at the end of the string */
-static void AdvancePointer(fsm_t *fsm)
+static void
+AdvancePointer (fsm_t *fsm)
 {
-
-   fsm->final = true;
+   assert (fsm != NULL);
+   fsm->current++;
 }
 
 /* Create a dynamically allocated buffer for storing the string as it is
    being built. Note that you will need to modify the fsm_t struct declaration
    to include whatever fields you may need for managing the buffer. */
 static void
-AllocateBuffer(fsm_t *fsm)
+AllocateBuffer (fsm_t *fsm)
 {
-   // Allocate buffer is called once when we see open quote
-   // must be able to contain the whole string.
-
-   fsm->buffer_size = strlen(fsm->input) + 1;
-   fsm->buffer = (char *)calloc(fsm->buffer_size, sizeof(char));
+   assert (fsm != NULL);
+   // fsm->buffer_size = strlen(fsm->input) + 1;
+   // fsm->buffer = (char *)calloc(fsm->buffer_size, sizeof(char));
+   // fsm->length = 0;
+   memset (fsm->buffer, 0, sizeof (fsm->buffer));
    fsm->length = 0;
 }
 
 /* Append a character from the current string to a buffer */
 static void
-AppendCharacter(fsm_t *fsm)
+AppendCharacter (fsm_t *fsm)
 {
-
-   // assert(fsm->length < fsm->buffer_size - 1);
-   strcat(fsm->buffer, fsm->current);
-   strcpy(fsm->last_appended_char, fsm->current);
-   fsm->length++;
+   assert (fsm != NULL);
+   // assert (fsm->length < BUFFER_LENGTH - 1);
+   fsm->buffer[fsm->length++] = *fsm->current;
 }
 
 /* Replaces a control sequence (\\ or \") by putting just the
    latter character into the buffer */
 static void
-ReplaceCharacter(fsm_t *fsm)
+ReplaceCharacter (fsm_t *fsm)
 {
-   // assert(fsm->length < fsm->buffer_size - 1);
-   fsm->buffer[fsm->length - 1] = fsm->current;
-}
-
-/* Given FSM instance and event, perform the table lookups */
-static state_t
-parse_transition(fsm_t *fsm, event_t event, action_t *effect, action_t *entry)
-{
-   /* If the state/event combination is bad, return -1 */
-   if (fsm->state >= NON_STR || event >= NIL_CHAR || _transition[fsm->state][event] == NON_STR)
-      return -1;
-
-   /* Look up the effect and transitions in the tables */
-   *effect = _effect[fsm->state][event];
-
-   /* Look up the next state in the list of entry events */
-   state_t next = _transition[fsm->state][event];
-   // if (next != NON_STR)
-   //    *entry = _entryArr[next];
-
-   return next;
+   assert (fsm != NULL);
+   // assert (fsm->length < BUFFER_LENGTH - 1);
+   fsm->buffer[fsm->length++] = *fsm->current;
 }
 
 /* Reports an invalid escape-code character */
 static void
-SyntaxError(fsm_t *fsm)
+SyntaxError (fsm_t *fsm)
 {
-   printf("SYNTAX ERROR: '%c%c' is not a valid escape code\n", fsm->last_appended_char, fsm->current);
+   printf ("SYNTAX ERROR: '\\%c' is not a valid escape code\n", *fsm->current);
 }

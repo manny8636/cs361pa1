@@ -1,5 +1,5 @@
---- outputs/PART_negative.txt	2022-02-13 13:37:43.731520523 -0500
-+++ expected/PART_negative.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -1 +1,2 @@
+--- outputs/PART_negative.txt	2022-02-14 17:19:50.520428242 -0500
++++ expected/PART_negative.txt	2022-02-13 17:48:24.374294593 -0500
+@@ -0,0 +1,2 @@
 +INTEGER: -25
- Success!
++Success!

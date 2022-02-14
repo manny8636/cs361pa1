@@ -1,5 +1,5 @@
---- outputs/PART_int.txt	2022-02-13 13:37:42.551509026 -0500
-+++ expected/PART_int.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -1 +1,2 @@
+--- outputs/PART_int.txt	2022-02-14 17:19:49.456418244 -0500
++++ expected/PART_int.txt	2022-02-13 17:48:24.370294554 -0500
+@@ -0,0 +1,2 @@
 +INTEGER: 123
- Success!
++Success!
