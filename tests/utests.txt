@@ -1,6 +1,11 @@
 Running suite(s): Default
 
 ======================================
+PARTIAL CREDIT: string_missing_quotes
+This test case should NOT succeed in parsing the input value
+missing quote
+
+======================================
 MINIMUM CREDIT: value_bad_integer
 This test case should NOT succeed in parsing the input value
 4a5
@@ -19,14 +24,13 @@ This test case should succeed in parsing the input value
 FULL CREDIT: object_bad_id
 This test case should succeed in parsing the input value
 { hello : 1234 }
-21%: Checks: 19, Failures: 15, Errors: 0
-public.c:22:F:Public:PART_string:0: Assertion 'str != ((void *)0)' failed
+26%: Checks: 19, Failures: 12, Errors: 2
+public.c:21:F:Public:PART_string:0: Assertion 'accept_string (string, &str)' failed
 public.c:34:F:Public:PART_integer:0: Assertion 'integer != ((void *)0)' failed
 public.c:50:F:Public:MIN_value_string:0: Assertion 'accept_value (value, &is_string, &str, &integer)' failed
 public.c:66:F:Public:FULL_object_string:0: Assertion 'result' failed
-private.c:29:F:Private:PART_string_escapes:0: Assertion 'str != ((void *)0)' failed
-private.c:48:F:Private:PART_string_invalid_escape:0: Assertion '! accept_string (string, &str)' failed
-private.c:66:F:Private:PART_string_missing_quotes:0: Assertion '! accept_string (string, &str)' failed
+private.c:26:E:Private:PART_string_escapes:0: (after this point) Received signal 11 (Segmentation fault)
+private.c:46:E:Private:PART_string_invalid_escape:0: (after this point) Received signal 11 (Segmentation fault)
 private.c:82:F:Private:PART_integer_single_digit:0: Assertion 'integer != ((void *)0)' failed
 private.c:100:F:Private:PART_integer_zero:0: Assertion 'integer != ((void *)0)' failed
 private.c:118:F:Private:PART_integer_negative:0: Assertion 'integer != ((void *)0)' failed

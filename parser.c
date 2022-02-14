@@ -1,9 +1,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "statemodel.h"
 #include "stringmodel.h"
-#include <string.h>
 
 /* Begins at fsm->current and tries to identify a string in the given
    input data. A string begins and ends with ". In between, only two
@@ -24,28 +24,32 @@ bool accept_string(fsm_t *fsm, char **result)
   // read the input string in a loop
 
   event_t evt = NIL_CHAR;
-  char *input_ch;
-  char *prior_input_ch = "";
+  char input_ch = ' ';
+  char prior_input_ch = ' ';
 
   // fsm->input
-  char *walker = fsm->input;
+  const char *walker = fsm->input;
   int cnt = 0;
 
   while (*walker != '\0')
   {
-    input_ch = walker;
-    if (!strcmp(input_ch, "\"") && cnt == 0)
+    input_ch = walker[0];
+    // if (!strcmp(input_ch, '\"') && cnt == 0)
+    if (input_ch == '\"' && cnt == 0)
       evt = OPEN_QUOTE;
-    else if (!strcmp(input_ch, "\"") && cnt == strlen(fsm->input))
+    // else if (!strcmp(input_ch, '\"') && cnt == strlen(fsm->input))
+    else if (input_ch == '\"' && cnt == strlen(fsm->input))
       evt = CLOSE_QUOTE;
-    else if (!strcmp(input_ch, "\\") && !strcmp(prior_input_ch, "\\"))
+    // else if (!strcmp(input_ch, '\\') && !strcmp(prior_input_ch, '\\'))
+    else if (input_ch == '\\' && prior_input_ch == '\\')
       evt = BACKSLASH;
-    else if (!strcmp(input_ch, "\\"))
+    // else if (!strcmp(input_ch, '\\'))
+    else if (input_ch == '\\')
       evt = ESC_CHAR;
     else
       evt = NON_CTRL;
 
-    strcpy(prior_input_ch, input_ch);
+    prior_input_ch = input_ch;
     walker++;
     cnt++;
 

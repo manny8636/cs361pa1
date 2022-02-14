@@ -1,5 +1,5 @@
---- ../main.c	2022-02-13 13:35:54.782458948 -0500
-+++ ckstyle/main.c.gnu	2022-02-13 13:37:55.167631948 -0500
+--- ../main.c	2022-02-13 14:58:08.278507107 -0500
++++ ckstyle/main.c.gnu	2022-02-14 17:13:40.896963264 -0500
 @@ -4,13 +4,13 @@
  #include <stdio.h>
  #include <stdlib.h>
@@ -55,7 +55,7 @@
  
    // open and read the file
    char *result;
-   bool success = true;
+   bool success = false;
    char *inputbuffer = 0;
    long length;
 -  FILE *f = fopen(filename, "r");

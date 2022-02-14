@@ -1,6 +1,7 @@
---- outputs/EXTRA_json_several.txt	2022-02-13 13:37:54.363624114 -0500
+--- outputs/EXTRA_json_several.txt	2022-02-14 17:13:40.164956420 -0500
 +++ expected/EXTRA_json_several.txt	2021-01-25 15:27:24.000000000 -0500
 @@ -1 +1,9 @@
+-Parsing ../data/json_several.txt failed
 +Key-value pairs:
 +{
 +KEYS[a] = alpha
@@ -9,4 +10,4 @@
 +KEYS[d] = 42
 +KEYS[e] = 2.718281828459
 +}
- Success!
++Success!

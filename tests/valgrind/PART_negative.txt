@@ -1,21 +1,21 @@
-==3062514== Memcheck, a memory error detector
-==3062514== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==3062514== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==3062514== Command: ../json -i ../data/negative.txt
-==3062514== 
-Success!
-==3062514== 
-==3062514== HEAP SUMMARY:
-==3062514==     in use at exit: 4 bytes in 1 blocks
-==3062514==   total heap usage: 4 allocs, 3 frees, 16,860 bytes allocated
-==3062514== 
-==3062514== LEAK SUMMARY:
-==3062514==    definitely lost: 4 bytes in 1 blocks
-==3062514==    indirectly lost: 0 bytes in 0 blocks
-==3062514==      possibly lost: 0 bytes in 0 blocks
-==3062514==    still reachable: 0 bytes in 0 blocks
-==3062514==         suppressed: 0 bytes in 0 blocks
-==3062514== Rerun with --leak-check=full to see details of leaked memory
-==3062514== 
-==3062514== For lists of detected and suppressed errors, rerun with: -s
-==3062514== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==146663== Memcheck, a memory error detector
+==146663== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==146663== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==146663== Command: ../json -i ../data/negative.txt
+==146663== 
+Parsing ../data/negative.txt failed
+==146663== 
+==146663== HEAP SUMMARY:
+==146663==     in use at exit: 4 bytes in 1 blocks
+==146663==   total heap usage: 4 allocs, 3 frees, 16,860 bytes allocated
+==146663== 
+==146663== LEAK SUMMARY:
+==146663==    definitely lost: 4 bytes in 1 blocks
+==146663==    indirectly lost: 0 bytes in 0 blocks
+==146663==      possibly lost: 0 bytes in 0 blocks
+==146663==    still reachable: 0 bytes in 0 blocks
+==146663==         suppressed: 0 bytes in 0 blocks
+==146663== Rerun with --leak-check=full to see details of leaked memory
+==146663== 
+==146663== For lists of detected and suppressed errors, rerun with: -s
+==146663== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

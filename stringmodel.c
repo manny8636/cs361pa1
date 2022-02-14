@@ -47,8 +47,8 @@ static action_t const _effect[NSTR_STATES][NSTR_EVENTS] = {
     {NULL, NULL, NULL, SyntaxError, ReplaceCharacter, NULL},   // ESCAPE
 };
 
-static action_t const _entryArr[NSTR_STATES] =
-    {NULL, NULL}; // NEW
+// static action_t const _entryArr[NSTR_STATES] =
+//     {NULL, NULL}; // NEW
 
 /* Return an FSM that links to these internals */
 fsm_t *
@@ -105,7 +105,7 @@ static void
 ReplaceCharacter(fsm_t *fsm)
 {
    // assert(fsm->length < fsm->buffer_size - 1);
-   fsm->buffer[fsm->length - 1] = fsm->current;
+   fsm->buffer[fsm->length - 1] = *fsm->current;
 }
 
 /* Given FSM instance and event, perform the table lookups */
@@ -131,5 +131,5 @@ parse_transition(fsm_t *fsm, event_t event, action_t *effect, action_t *entry)
 static void
 SyntaxError(fsm_t *fsm)
 {
-   printf("SYNTAX ERROR: '%c%c' is not a valid escape code\n", fsm->last_appended_char, fsm->current);
+   printf("SYNTAX ERROR: '%c%c' is not a valid escape code\n", *fsm->last_appended_char, *fsm->current);
 }

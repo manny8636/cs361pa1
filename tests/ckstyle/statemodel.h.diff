@@ -1,5 +1,5 @@
 --- ../statemodel.h	2022-02-13 13:36:42.098920005 -0500
-+++ ckstyle/statemodel.h.gnu	2022-02-13 13:37:55.359633818 -0500
++++ ckstyle/statemodel.h.gnu	2022-02-14 17:13:41.088965060 -0500
 @@ -15,7 +15,7 @@
  typedef struct fsm fsm_t;
  

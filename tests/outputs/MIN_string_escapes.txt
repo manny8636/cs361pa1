@@ -1,1 +1,1 @@
-Success!
+Parsing ../data/string_escapes.txt failed

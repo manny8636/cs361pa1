@@ -1,9 +1,10 @@
---- outputs/EXTRA_json_multiple.txt	2022-02-13 13:37:53.811618736 -0500
+--- outputs/EXTRA_json_multiple.txt	2022-02-14 17:13:39.592951070 -0500
 +++ expected/EXTRA_json_multiple.txt	2021-01-25 15:27:24.000000000 -0500
 @@ -1 +1,6 @@
+-Parsing ../data/json_multiple.txt failed
 +Key-value pairs:
 +{
 +KEYS[first] = 15
 +KEYS[second] = value
 +}
- Success!
++Success!

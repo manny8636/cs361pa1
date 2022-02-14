@@ -1,8 +1,9 @@
---- outputs/FULL_json_max.txt	2022-02-13 13:37:53.251613280 -0500
+--- outputs/FULL_json_max.txt	2022-02-14 17:13:39.024945759 -0500
 +++ expected/FULL_json_max.txt	2021-01-25 15:27:24.000000000 -0500
 @@ -1 +1,5 @@
+-Parsing ../data/json_max.txt failed
 +Key-value pairs:
 +{
 +KEYS[long long min] = -9223372036854775807
 +}
- Success!
++Success!

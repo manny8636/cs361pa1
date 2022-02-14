@@ -1,6 +1,5 @@
---- outputs/MIN_int_bad.txt	2022-02-13 13:37:47.871560861 -0500
+--- outputs/MIN_int_bad.txt	2022-02-14 17:13:33.824897132 -0500
 +++ expected/MIN_int_bad.txt	2021-01-25 15:27:24.000000000 -0500
 @@ -1 +1,2 @@
--Success!
 +SYNTAX ERROR: 'j' is not a valid digit
-+Parsing ../data/int_bad.txt failed
+ Parsing ../data/int_bad.txt failed

@@ -1,5 +1,6 @@
---- outputs/MIN_string.txt	2022-02-13 13:37:45.547538218 -0500
+--- outputs/MIN_string.txt	2022-02-14 17:13:31.396874426 -0500
 +++ expected/MIN_string.txt	2021-01-25 15:27:24.000000000 -0500
 @@ -1 +1,2 @@
+-Parsing ../data/string.txt failed
 +VALUE [string]: 'I am a simple string'
- Success!
++Success!

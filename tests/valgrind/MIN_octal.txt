@@ -1,21 +1,21 @@
-==3062710== Memcheck, a memory error detector
-==3062710== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==3062710== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==3062710== Command: ../json -v ../data/octal.txt
-==3062710== 
-Success!
-==3062710== 
-==3062710== HEAP SUMMARY:
-==3062710==     in use at exit: 4 bytes in 1 blocks
-==3062710==   total heap usage: 4 allocs, 3 frees, 16,860 bytes allocated
-==3062710== 
-==3062710== LEAK SUMMARY:
-==3062710==    definitely lost: 4 bytes in 1 blocks
-==3062710==    indirectly lost: 0 bytes in 0 blocks
-==3062710==      possibly lost: 0 bytes in 0 blocks
-==3062710==    still reachable: 0 bytes in 0 blocks
-==3062710==         suppressed: 0 bytes in 0 blocks
-==3062710== Rerun with --leak-check=full to see details of leaked memory
-==3062710== 
-==3062710== For lists of detected and suppressed errors, rerun with: -s
-==3062710== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==146803== Memcheck, a memory error detector
+==146803== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==146803== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==146803== Command: ../json -v ../data/octal.txt
+==146803== 
+Parsing ../data/octal.txt failed
+==146803== 
+==146803== HEAP SUMMARY:
+==146803==     in use at exit: 4 bytes in 1 blocks
+==146803==   total heap usage: 4 allocs, 3 frees, 16,860 bytes allocated
+==146803== 
+==146803== LEAK SUMMARY:
+==146803==    definitely lost: 4 bytes in 1 blocks
+==146803==    indirectly lost: 0 bytes in 0 blocks
+==146803==      possibly lost: 0 bytes in 0 blocks
+==146803==    still reachable: 0 bytes in 0 blocks
+==146803==         suppressed: 0 bytes in 0 blocks
+==146803== Rerun with --leak-check=full to see details of leaked memory
+==146803== 
+==146803== For lists of detected and suppressed errors, rerun with: -s
+==146803== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

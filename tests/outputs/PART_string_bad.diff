@@ -1,6 +1,5 @@
---- outputs/PART_string_bad.txt	2022-02-13 13:37:41.139495269 -0500
+--- outputs/PART_string_bad.txt	2022-02-14 17:13:26.660830137 -0500
 +++ expected/PART_string_bad.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -1 +1,2 @@
--STRING: Success!
+@@ -0,0 +1,2 @@
 +SYNTAX ERROR: '\n' is not a valid escape code
 +Parsing ../data/string_bad.txt failed

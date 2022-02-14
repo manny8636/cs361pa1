@@ -1,1 +1,1 @@
-Success!
+Parsing ../data/negative.txt failed

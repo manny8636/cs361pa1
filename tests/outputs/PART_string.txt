@@ -1,1 +1,1 @@
-STRING: Success!
+Parsing ../data/string.txt failed

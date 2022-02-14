@@ -1,1 +1,1 @@
-Success!
+Parsing ../data/string_bad.txt failed

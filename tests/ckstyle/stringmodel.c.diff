@@ -1,5 +1,5 @@
---- ../stringmodel.c	2022-02-13 13:37:03.983133239 -0500
-+++ ckstyle/stringmodel.c.gnu	2022-02-13 13:37:55.411634325 -0500
+--- ../stringmodel.c	2022-02-14 16:05:30.394656888 -0500
++++ ckstyle/stringmodel.c.gnu	2022-02-14 17:13:41.124965397 -0500
 @@ -7,11 +7,11 @@
  #include "statemodel.h"
  #include "stringmodel.h"
@@ -17,7 +17,7 @@
  
  /* Define additional functions or global data structures for this specific
     FSM. IMPORTANT: You must declare all such additional declarations as static
-@@ -27,109 +27,112 @@
+@@ -27,24 +27,25 @@
  
  // /////////////////// EFFECT FUNCTIONS ////////////////////
  
@@ -51,9 +51,8 @@
 +  { NULL, NULL, NULL, SyntaxError, ReplaceCharacter, NULL },   // ESCAPE
  };
  
--static action_t const _entryArr[NSTR_STATES] =
--    {NULL, NULL}; // NEW
-+static action_t const _entryArr[NSTR_STATES] = { NULL, NULL }; // NEW
+ // static action_t const _entryArr[NSTR_STATES] =
+@@ -52,84 +53,87 @@
  
  /* Return an FSM that links to these internals */
  fsm_t *
@@ -121,11 +120,11 @@
  
 -   // assert(fsm->length < fsm->buffer_size - 1);
 -   strcat(fsm->buffer, fsm->current);
--   fsm->last_appended_char = fsm->current;
+-   strcpy(fsm->last_appended_char, fsm->current);
 -   fsm->length++;
 +  // assert(fsm->length < fsm->buffer_size - 1);
 +  strcat (fsm->buffer, fsm->current);
-+  fsm->last_appended_char = fsm->current;
++  strcpy (fsm->last_appended_char, fsm->current);
 +  fsm->length++;
  }
  
@@ -136,9 +135,9 @@
 +ReplaceCharacter (fsm_t *fsm)
  {
 -   // assert(fsm->length < fsm->buffer_size - 1);
--   fsm->buffer[fsm->length - 1] = (char *)fsm->current;
+-   fsm->buffer[fsm->length - 1] = *fsm->current;
 +  // assert(fsm->length < fsm->buffer_size - 1);
-+  fsm->buffer[fsm->length - 1] = (char *)fsm->current;
++  fsm->buffer[fsm->length - 1] = *fsm->current;
  }
  
  /* Given FSM instance and event, perform the table lookups */
@@ -179,7 +178,7 @@
 -SyntaxError(fsm_t *fsm)
 +SyntaxError (fsm_t *fsm)
  {
--   printf("SYNTAX ERROR: '%c%c' is not a valid escape code\n", fsm->last_appended_char, (char *)fsm->current);
+-   printf("SYNTAX ERROR: '%c%c' is not a valid escape code\n", *fsm->last_appended_char, *fsm->current);
 +  printf ("SYNTAX ERROR: '%c%c' is not a valid escape code\n",
-+          fsm->last_appended_char, (char *)fsm->current);
++          *fsm->last_appended_char, *fsm->current);
  }
