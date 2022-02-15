@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+=======
+SYNTAX ERROR: '\n' is not a valid escape code
+Parsing ../data/string_bad.txt failed
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46

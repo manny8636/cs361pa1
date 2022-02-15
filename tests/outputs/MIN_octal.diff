@@ -1,6 +1,0 @@
---- outputs/MIN_octal.txt	2022-02-14 17:13:34.972907867 -0500
-+++ expected/MIN_octal.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -1 +1,2 @@
--Parsing ../data/octal.txt failed
-+VALUE [integer]: 16
-+Success!

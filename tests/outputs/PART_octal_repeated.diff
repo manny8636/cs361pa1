@@ -1,6 +1,0 @@
---- outputs/PART_octal_repeated.txt	2022-02-14 17:13:30.808868928 -0500
-+++ expected/PART_octal_repeated.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -1 +1,2 @@
--Parsing ../data/octal_repeated.txt failed
-+INTEGER: 93
-+Success!

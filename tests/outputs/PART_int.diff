@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 --- outputs/PART_int.txt	2022-02-14 17:13:28.440846784 -0500
 +++ expected/PART_int.txt	2021-01-25 15:27:24.000000000 -0500
 @@ -1 +1,2 @@
 -Parsing ../data/int.txt failed
+=======
+--- outputs/PART_int.txt	2022-02-14 17:19:49.456418244 -0500
++++ expected/PART_int.txt	2022-02-13 17:48:24.370294554 -0500
+@@ -0,0 +1,2 @@
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
 +INTEGER: 123
 +Success!

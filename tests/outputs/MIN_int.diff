@@ -1,6 +1,0 @@
---- outputs/MIN_int.txt	2022-02-14 17:13:33.224891521 -0500
-+++ expected/MIN_int.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -1 +1,2 @@
--Parsing ../data/int.txt failed
-+VALUE [integer]: 123
-+Success!

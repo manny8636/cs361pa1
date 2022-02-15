@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 --- outputs/PART_octal.txt	2022-02-14 17:13:30.216863392 -0500
 +++ expected/PART_octal.txt	2021-01-25 15:27:24.000000000 -0500
 @@ -1 +1,2 @@
 -Parsing ../data/octal.txt failed
+=======
+--- outputs/PART_octal.txt	2022-02-14 17:19:51.052433240 -0500
++++ expected/PART_octal.txt	2022-02-13 17:48:24.374294593 -0500
+@@ -0,0 +1,2 @@
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
 +INTEGER: 16
 +Success!

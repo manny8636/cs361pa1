@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 Parsing ../data/string.txt failed
+=======
+STRING: 'I am a simple string'
+Success!
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46

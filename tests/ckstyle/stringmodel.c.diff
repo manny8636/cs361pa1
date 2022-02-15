@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 --- ../stringmodel.c	2022-02-14 16:05:30.394656888 -0500
 +++ ckstyle/stringmodel.c.gnu	2022-02-14 17:13:41.124965397 -0500
 @@ -7,11 +7,11 @@
@@ -38,18 +39,56 @@
 +  { BUILDING, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR },    // ENTER
 +  { NON_STR, BUILDING, ESCAPE, NON_STR, NON_STR, STR_FINISH },  // BUILDING
 +  { NON_STR, NON_STR, NON_STR, STR_FINISH, BUILDING, NON_STR }, // ESCAPE
- };
+=======
+--- ../stringmodel.c	2022-02-14 17:10:30.000000000 -0500
++++ ckstyle/stringmodel.c.gnu	2022-02-14 17:13:44.829000034 -0500
+@@ -1,8 +1,8 @@
++#include <assert.h>
+ #include <stdbool.h>
+-#include <stdlib.h>
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <string.h>
+-#include <assert.h>
  
- static action_t const _effect[NSTR_STATES][NSTR_EVENTS] = {
--    // OPEN_QUOTE NON_CTRL BACKSLASH NO_ESC ESC_CHAR CLOSE_QUOTE
--    {AllocateBuffer, NULL, NULL, NULL, NULL, NULL},            // ENTER
--    {NULL, AppendCharacter, NULL, NULL, NULL, AdvancePointer}, // BUILDING
--    {NULL, NULL, NULL, SyntaxError, ReplaceCharacter, NULL},   // ESCAPE
-+  // OPEN_QUOTE NON_CTRL BACKSLASH NO_ESC ESC_CHAR CLOSE_QUOTE
-+  { AllocateBuffer, NULL, NULL, NULL, NULL, NULL },            // ENTER
-+  { NULL, AppendCharacter, NULL, NULL, NULL, AdvancePointer }, // BUILDING
-+  { NULL, NULL, NULL, SyntaxError, ReplaceCharacter, NULL },   // ESCAPE
+ #include "statemodel.h"
+ #include "stringmodel.h"
+@@ -21,7 +21,7 @@
+ {
+   fsm_t *fsm = calloc (1, sizeof (fsm_t));
+   fsm->nevents = NSTR_EVENTS;
+-  fsm->state = STR_INIT;  
++  fsm->state = STR_INIT;
+   fsm->transition = &parse_transition;
+   fsm->input = input;
+   fsm->current = input;
+@@ -42,19 +42,19 @@
+ // printf ("SYNTAX ERROR: '%c%c' is not a valid escape code\n",
+ static state_t const _transitions[NSTR_STATES][NSTR_EVENTS] = {
+   // OPEN_QUOTE CLOSE_QUOTE NON_CTRL BACKSLASH ESC_CHAR NO_ESC
+-  { BUILDING, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR }, // STR_INIT
++  { BUILDING, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR },   // STR_INIT
+   { NON_STR, STR_FINISH, BUILDING, ESCAPE, NON_STR, NON_STR }, // BUILDING
+   { NON_STR, NON_STR, NON_STR, NON_STR, BUILDING, STR_ERROR }, // ESCAPE
+-  { NON_STR, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR }, // STR_FINISH
+-  { NON_STR, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR }  // STR_ERROR
++  { NON_STR, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR },    // STR_FINISH
++  { NON_STR, NON_STR, NON_STR, NON_STR, NON_STR, NON_STR }     // STR_ERROR
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
  };
+ static action_t const _effect[NSTR_STATES][NSTR_EVENTS] = {
+   // OPEN_QUOTE CLOSE_QUOTE NON_CTRL BACKSLASH ESC_CHAR NO_ESC
+-  { AllocateBuffer, NULL, NULL, NULL, NULL, NULL }, // STR_INIT
++  { AllocateBuffer, NULL, NULL, NULL, NULL, NULL },            // STR_INIT
+   { NULL, AdvancePointer, AppendCharacter, NULL, NULL, NULL }, // BUILDING
+-  { NULL, NULL, NULL, NULL, ReplaceCharacter, SyntaxError }, // ESCAPE
+-  { NULL, NULL, NULL, NULL, NULL, NULL }, // STR_FINISH
+-  { NULL, NULL, NULL, NULL, NULL, NULL }  // STR_ERROR
++  { NULL, NULL, NULL, NULL, ReplaceCharacter, SyntaxError },   // ESCAPE
++  { NULL, NULL, NULL, NULL, NULL, NULL },                      // STR_FINISH
++  { NULL, NULL, NULL, NULL, NULL, NULL }                       // STR_ERROR
+ };
+<<<<<<< HEAD
  
  // static action_t const _entryArr[NSTR_STATES] =
 @@ -52,84 +53,87 @@
@@ -86,37 +125,44 @@
 -static void AdvancePointer(fsm_t *fsm)
 +static void
 +AdvancePointer (fsm_t *fsm)
+=======
+ // /////////////////// EFFECT FUNCTIONS ////////////////////
+ static state_t
+@@ -71,8 +71,8 @@
+ static void
+ AdvancePointer (fsm_t *fsm)
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
  {
- 
--   fsm->final = true;
-+  fsm->final = true;
+-   assert (fsm != NULL);
+-   fsm->current++;
++  assert (fsm != NULL);
++  fsm->current++;
  }
  
  /* Create a dynamically allocated buffer for storing the string as it is
-    being built. Note that you will need to modify the fsm_t struct declaration
-    to include whatever fields you may need for managing the buffer. */
+@@ -81,21 +81,21 @@
  static void
--AllocateBuffer(fsm_t *fsm)
-+AllocateBuffer (fsm_t *fsm)
+ AllocateBuffer (fsm_t *fsm)
  {
--   // Allocate buffer is called once when we see open quote
--   // must be able to contain the whole string.
-+  // Allocate buffer is called once when we see open quote
-+  // must be able to contain the whole string.
- 
--   fsm->buffer_size = strlen(fsm->input) + 1;
--   fsm->buffer = (char *)calloc(fsm->buffer_size, sizeof(char));
+-   assert (fsm != NULL);
+-   // fsm->buffer_size = strlen(fsm->input) + 1;
+-   // fsm->buffer = (char *)calloc(fsm->buffer_size, sizeof(char));
+-   // fsm->length = 0;
+-   memset (fsm->buffer, 0, sizeof (fsm->buffer));
 -   fsm->length = 0;
-+  fsm->buffer_size = strlen (fsm->input) + 1;
-+  fsm->buffer = (char *)calloc (fsm->buffer_size, sizeof (char));
++  assert (fsm != NULL);
++  // fsm->buffer_size = strlen(fsm->input) + 1;
++  // fsm->buffer = (char *)calloc(fsm->buffer_size, sizeof(char));
++  // fsm->length = 0;
++  memset (fsm->buffer, 0, sizeof (fsm->buffer));
 +  fsm->length = 0;
  }
  
  /* Append a character from the current string to a buffer */
  static void
--AppendCharacter(fsm_t *fsm)
-+AppendCharacter (fsm_t *fsm)
+ AppendCharacter (fsm_t *fsm)
  {
+<<<<<<< HEAD
  
 -   // assert(fsm->length < fsm->buffer_size - 1);
 -   strcat(fsm->buffer, fsm->current);
@@ -126,14 +172,22 @@
 +  strcat (fsm->buffer, fsm->current);
 +  strcpy (fsm->last_appended_char, fsm->current);
 +  fsm->length++;
+=======
+-   assert (fsm != NULL);
+-   // assert (fsm->length < BUFFER_LENGTH - 1);
+-   fsm->buffer[fsm->length++] = *fsm->current;
++  assert (fsm != NULL);
++  // assert (fsm->length < BUFFER_LENGTH - 1);
++  fsm->buffer[fsm->length++] = *fsm->current;
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
  }
  
  /* Replaces a control sequence (\\ or \") by putting just the
-    latter character into the buffer */
+@@ -103,14 +103,14 @@
  static void
--ReplaceCharacter(fsm_t *fsm)
-+ReplaceCharacter (fsm_t *fsm)
+ ReplaceCharacter (fsm_t *fsm)
  {
+<<<<<<< HEAD
 -   // assert(fsm->length < fsm->buffer_size - 1);
 -   fsm->buffer[fsm->length - 1] = *fsm->current;
 +  // assert(fsm->length < fsm->buffer_size - 1);
@@ -171,14 +225,26 @@
  
 -   return next;
 +  return next;
+=======
+-   assert (fsm != NULL);
+-   // assert (fsm->length < BUFFER_LENGTH - 1);
+-   fsm->buffer[fsm->length++] = *fsm->current;
++  assert (fsm != NULL);
++  // assert (fsm->length < BUFFER_LENGTH - 1);
++  fsm->buffer[fsm->length++] = *fsm->current;
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
  }
  
  /* Reports an invalid escape-code character */
  static void
--SyntaxError(fsm_t *fsm)
-+SyntaxError (fsm_t *fsm)
+ SyntaxError (fsm_t *fsm)
  {
+<<<<<<< HEAD
 -   printf("SYNTAX ERROR: '%c%c' is not a valid escape code\n", *fsm->last_appended_char, *fsm->current);
 +  printf ("SYNTAX ERROR: '%c%c' is not a valid escape code\n",
 +          *fsm->last_appended_char, *fsm->current);
+=======
+-   printf ("SYNTAX ERROR: '\\%c' is not a valid escape code\n", *fsm->current);
++  printf ("SYNTAX ERROR: '\\%c' is not a valid escape code\n", *fsm->current);
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
  }

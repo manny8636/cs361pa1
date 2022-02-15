@@ -1,9 +1,18 @@
+#ifdef __STDC_ALLOC_LIB__
+#define __STDC_WANT_LIB_EXT2__ 1
+#else
+#define _POSIX_C_SOURCE 200809L
+#endif
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "statemodel.h"
 #include "stringmodel.h"
+<<<<<<< HEAD
+=======
+#include "intmodel.h"
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
 
 /* Begins at fsm->current and tries to identify a string in the given
    input data. A string begins and ends with ". In between, only two
@@ -16,8 +25,10 @@
    access to local variables here; instead, you should extend the fsm_t
    declaration to include helper variables, such as a buffer to copy the
    input bytes into.) */
-bool accept_string(fsm_t *fsm, char **result)
+bool
+accept_string (fsm_t *fsm, char **result)
 {
+<<<<<<< HEAD
 
   // should the generic handle_event be called here?
 
@@ -54,15 +65,56 @@ bool accept_string(fsm_t *fsm, char **result)
     cnt++;
 
     handle_event(fsm, evt);
-  }
-
-  // when accepting is done, we point the result to the fsm built buffer
-  if (fsm->final)
+=======
+  if (*fsm->current != '\"')
   {
-    result = &fsm->buffer;
-    fsm->final = true;
+    return false;
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
   }
-
+  while (*fsm->current != '\0')
+  {
+    switch (*fsm->current)
+    {
+      case '\"':
+      {
+        if (fsm->state == STR_INIT)
+        {
+          handle_event(fsm, OPEN_QUOTE);
+        } else
+        {
+          handle_event(fsm, CLOSE_QUOTE);
+        }
+        break;
+      }
+      case '\\':
+      {
+        handle_event(fsm, BACKSLASH);
+        fsm->current++;
+        if (*fsm->current == '\\' || *fsm->current == '\"')
+        {
+          handle_event(fsm, ESC_CHAR);
+        } else
+        {
+          handle_event(fsm, NO_ESC);
+          return false;
+        }
+        break;
+      }
+      default:
+      {
+        handle_event(fsm, NON_CTRL);
+        break;
+      }
+    }
+    fsm->current++;
+  }
+  if (fsm->length != 0)
+  {
+    char *temp = strdup(fsm->buffer);
+    *result = temp;
+    // result = &fsm->buffer;
+    return true;
+  }
   return false;
 }
 
@@ -76,7 +128,8 @@ bool accept_string(fsm_t *fsm, char **result)
    should be copied into the location pointed to by the call-by-reference
    parameter value and the function should return true. Otherwise, return
    false. */
-bool accept_integer(fsm_t *fsm, int64_t *value)
+bool
+accept_integer (fsm_t *fsm, int64_t *value)
 {
   return false;
 }
@@ -89,7 +142,8 @@ bool accept_integer(fsm_t *fsm, int64_t *value)
    Returns true only if a valid string or integer value was accepted.
    If a value was successully parsed, sets the is_string, string, and
    value call-by-reference parameters as appropriate. */
-bool accept_value(fsm_t *fsm, bool *is_string, char **string, int64_t *value)
+bool
+accept_value (fsm_t *fsm, bool *is_string, char **string, int64_t *value)
 {
   return false;
 }
@@ -128,7 +182,8 @@ bool accept_value(fsm_t *fsm, bool *is_string, char **string, int64_t *value)
 
    Return true if the object is successfully parsed, false otherwise.
    */
-bool accept_object(fsm_t *fsm, char **keys)
+bool
+accept_object (fsm_t *fsm, char **keys)
 {
   return false;
 }

@@ -1,49 +1,7 @@
-PART_string                    FAIL (see outputs/PART_string.diff for details)
-PART_string_bad                FAIL (see outputs/PART_string_bad.diff for details)
+PART_string                    pass
+PART_string_bad                pass
 PART_string_escapes            FAIL (see outputs/PART_string_escapes.diff for details)
 PART_int                       FAIL (see outputs/PART_int.diff for details)
 PART_int_bad                   FAIL (see outputs/PART_int_bad.diff for details)
 PART_negative                  FAIL (see outputs/PART_negative.diff for details)
 PART_octal                     FAIL (see outputs/PART_octal.diff for details)
-PART_octal_repeated            FAIL (see outputs/PART_octal_repeated.diff for details)
-MIN_string                     FAIL (see outputs/MIN_string.diff for details)
-MIN_string_bad                 FAIL (see outputs/MIN_string_bad.diff for details)
-MIN_string_escapes             FAIL (see outputs/MIN_string_escapes.diff for details)
-MIN_int                        FAIL (see outputs/MIN_int.diff for details)
-MIN_int_bad                    FAIL (see outputs/MIN_int_bad.diff for details)
-MIN_negative                   FAIL (see outputs/MIN_negative.diff for details)
-MIN_octal                      FAIL (see outputs/MIN_octal.diff for details)
-MIN_octal_repeated             FAIL (see outputs/MIN_octal_repeated.diff for details)
-FULL_json                      FAIL (see outputs/FULL_json.diff for details)
-FULL_json_bad                  FAIL (see outputs/FULL_json_bad.diff for details)
-FULL_json_bad_id               FAIL (see outputs/FULL_json_bad_id.diff for details)
-FULL_json_bad_token            FAIL (see outputs/FULL_json_bad_token.diff for details)
-FULL_json_int                  FAIL (see outputs/FULL_json_int.diff for details)
-FULL_json_max                  FAIL (see outputs/FULL_json_max.diff for details)
-EXTRA_json_multiple            FAIL (see outputs/EXTRA_json_multiple.diff for details)
-EXTRA_json_several             FAIL (see outputs/EXTRA_json_several.diff for details)
-Memory leak(s) found. See files listed below for details.
-  - valgrind/EXTRA_json_multiple.txt
-  - valgrind/EXTRA_json_several.txt
-  - valgrind/FULL_json.txt
-  - valgrind/FULL_json_bad.txt
-  - valgrind/FULL_json_bad_id.txt
-  - valgrind/FULL_json_bad_token.txt
-  - valgrind/FULL_json_int.txt
-  - valgrind/FULL_json_max.txt
-  - valgrind/MIN_int.txt
-  - valgrind/MIN_int_bad.txt
-  - valgrind/MIN_negative.txt
-  - valgrind/MIN_octal.txt
-  - valgrind/MIN_octal_repeated.txt
-  - valgrind/MIN_string.txt
-  - valgrind/MIN_string_bad.txt
-  - valgrind/MIN_string_escapes.txt
-  - valgrind/PART_int.txt
-  - valgrind/PART_int_bad.txt
-  - valgrind/PART_negative.txt
-  - valgrind/PART_octal.txt
-  - valgrind/PART_octal_repeated.txt
-  - valgrind/PART_string.txt
-  - valgrind/PART_string_bad.txt
-  - valgrind/PART_string_escapes.txt

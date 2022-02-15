@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 --- ../parser.c	2022-02-14 17:11:46.127889937 -0500
 +++ ckstyle/parser.c.gnu	2022-02-14 17:13:40.996964200 -0500
 @@ -16,7 +16,8 @@
@@ -94,12 +95,115 @@
    return false;
  }
 @@ -128,7 +131,8 @@
+=======
+--- ../parser.c	2022-02-14 16:56:01.000000000 -0500
++++ ckstyle/parser.c.gnu	2022-02-14 17:13:44.696998799 -0500
+@@ -7,9 +7,9 @@
+ #include <stdlib.h>
+ #include <string.h>
  
-    Return true if the object is successfully parsed, false otherwise.
-    */
--bool accept_object(fsm_t *fsm, char **keys)
-+bool
-+accept_object (fsm_t *fsm, char **keys)
++#include "intmodel.h"
+ #include "statemodel.h"
+ #include "stringmodel.h"
+-#include "intmodel.h"
+>>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
+ 
+ /* Begins at fsm->current and tries to identify a string in the given
+    input data. A string begins and ends with ". In between, only two
+@@ -26,53 +26,55 @@
+ accept_string (fsm_t *fsm, char **result)
  {
+   if (*fsm->current != '\"')
+-  {
+-    return false;
+-  }
++    {
++      return false;
++    }
+   while (*fsm->current != '\0')
+-  {
+-    switch (*fsm->current)
+     {
+-      case '\"':
+-      {
+-        if (fsm->state == STR_INIT)
+-        {
+-          handle_event(fsm, OPEN_QUOTE);
+-        } else
++      switch (*fsm->current)
+         {
+-          handle_event(fsm, CLOSE_QUOTE);
++        case '\"':
++          {
++            if (fsm->state == STR_INIT)
++              {
++                handle_event (fsm, OPEN_QUOTE);
++              }
++            else
++              {
++                handle_event (fsm, CLOSE_QUOTE);
++              }
++            break;
++          }
++        case '\\':
++          {
++            handle_event (fsm, BACKSLASH);
++            fsm->current++;
++            if (*fsm->current == '\\' || *fsm->current == '\"')
++              {
++                handle_event (fsm, ESC_CHAR);
++              }
++            else
++              {
++                handle_event (fsm, NO_ESC);
++                return false;
++              }
++            break;
++          }
++        default:
++          {
++            handle_event (fsm, NON_CTRL);
++            break;
++          }
+         }
+-        break;
+-      }
+-      case '\\':
+-      {
+-        handle_event(fsm, BACKSLASH);
+-        fsm->current++;
+-        if (*fsm->current == '\\' || *fsm->current == '\"')
+-        {
+-          handle_event(fsm, ESC_CHAR);
+-        } else
+-        {
+-          handle_event(fsm, NO_ESC);
+-          return false;
+-        }
+-        break;
+-      }
+-      default:
+-      {
+-        handle_event(fsm, NON_CTRL);
+-        break;
+-      }
++      fsm->current++;
+     }
+-    fsm->current++;
+-  }
+   if (fsm->length != 0)
+-  {
+-    char *temp = strdup(fsm->buffer);
+-    *result = temp;
+-    // result = &fsm->buffer;
+-    return true;
+-  }
++    {
++      char *temp = strdup (fsm->buffer);
++      *result = temp;
++      // result = &fsm->buffer;
++      return true;
++    }
    return false;
  }
+ 
