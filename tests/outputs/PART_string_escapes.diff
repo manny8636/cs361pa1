@@ -1,12 +1,6 @@
-<<<<<<< HEAD
---- outputs/PART_string_escapes.txt	2022-02-14 17:13:27.672839602 -0500
+--- outputs/PART_string_escapes.txt	2022-02-15 14:30:46.514991372 -0500
 +++ expected/PART_string_escapes.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -0,0 +1,2 @@
-=======
---- outputs/PART_string_escapes.txt	2022-02-14 17:19:48.916413173 -0500
-+++ expected/PART_string_escapes.txt	2022-02-13 17:48:24.378294632 -0500
 @@ -1,2 +1,2 @@
--STRING: 'This "is" okay to do. He…'
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
+-STRING: 'This"i" okay to do. Here is a\ backslash.'
 +STRING: 'This "is" okay to do. Here is a \ backslash.'
  Success!

@@ -1,0 +1,5 @@
+--- outputs/MIN_string.txt	2022-02-15 14:30:50.035024323 -0500
++++ expected/MIN_string.txt	2021-01-25 15:27:24.000000000 -0500
+@@ -0,0 +1,2 @@
++VALUE [string]: 'I am a simple string'
++Success!

@@ -1,14 +1,8 @@
-<<<<<<< HEAD
---- ../main.c	2022-02-13 14:58:08.278507107 -0500
-+++ ckstyle/main.c.gnu	2022-02-14 17:13:40.896963264 -0500
-@@ -4,13 +4,13 @@
-=======
---- ../main.c	2022-02-14 17:11:43.000000000 -0500
-+++ ckstyle/main.c.gnu	2022-02-14 17:13:44.604997939 -0500
+--- ../main.c	2022-02-14 21:51:17.585273444 -0500
++++ ckstyle/main.c.gnu	2022-02-15 14:30:59.227110368 -0500
 @@ -1,4 +1,4 @@
 -#define  _GNU_SOURCE
 +#define _GNU_SOURCE
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
  #include <stdio.h>
  
  #include <getopt.h>
@@ -28,73 +22,8 @@
  
  // Used to specify which of the four FSMs to use
  typedef enum
-<<<<<<< HEAD
-@@ -21,131 +21,132 @@
-   OBJ
- } fsm_type_t;
- 
--static bool get_args(int, char **, fsm_type_t *, char **);
--static void usage(void);
-+static bool get_args (int, char **, fsm_type_t *, char **);
-+static void usage (void);
- 
--int main(int argc, char **argv)
-+int
-+main (int argc, char **argv)
- {
-   if (argc < 3)
--  {
--    usage();
--    return EXIT_FAILURE;
--  }
-+    {
-+      usage ();
-+      return EXIT_FAILURE;
-+    }
- 
-   fsm_type_t type = INT;
-   char *filename = NULL;
--  if (!get_args(argc, argv, &type, &filename))
--  {
--    usage();
--    return EXIT_FAILURE;
--  }
-+  if (!get_args (argc, argv, &type, &filename))
-+    {
-+      usage ();
-+      return EXIT_FAILURE;
-+    }
- 
-   // open and read the file
-   char *result;
-   bool success = false;
-   char *inputbuffer = 0;
-   long length;
--  FILE *f = fopen(filename, "r");
-+  FILE *f = fopen (filename, "r");
- 
-   if (f)
--  {
--    fseek(f, 0, SEEK_END);
--    length = ftell(f);
--    fseek(f, 0, SEEK_SET);
--    inputbuffer = malloc(length);
--    if (inputbuffer)
-     {
--      fread(inputbuffer, 1, length, f);
-+      fseek (f, 0, SEEK_END);
-+      length = ftell (f);
-+      fseek (f, 0, SEEK_SET);
-+      inputbuffer = malloc (length);
-+      if (inputbuffer)
-+        {
-+          fread (inputbuffer, 1, length, f);
-+        }
-+      fclose (f);
-=======
 @@ -42,45 +42,46 @@
        return EXIT_FAILURE;
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
      }
  
 -  FILE * fp;

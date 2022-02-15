@@ -1,4 +1,0 @@
-<<<<<<< HEAD
-Parsing ../data/octal.txt failed
-=======
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46

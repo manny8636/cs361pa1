@@ -1,0 +1,5 @@
+--- outputs/MIN_string_bad.txt	2022-02-15 14:30:50.571029340 -0500
++++ expected/MIN_string_bad.txt	2021-01-25 15:27:24.000000000 -0500
+@@ -0,0 +1,2 @@
++SYNTAX ERROR: '\n' is not a valid escape code
++Parsing ../data/string_bad.txt failed

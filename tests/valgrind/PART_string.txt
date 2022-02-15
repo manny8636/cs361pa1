@@ -1,71 +1,22 @@
-<<<<<<< HEAD
-==146602== Memcheck, a memory error detector
-==146602== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==146602== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==146602== Command: ../json -s ../data/string.txt
-==146602== 
-==146602== Invalid read of size 1
-==146602==    at 0x483EF54: strlen (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==146602==    by 0x109794: AllocateBuffer (stringmodel.c:86)
-==146602==    by 0x1096B5: handle_event (statemodel.c:26)
-==146602==    by 0x109A7F: accept_string (parser.c:56)
-==146602==    by 0x10945D: main (main.c:79)
-==146602==  Address 0x4a582b7 is 0 bytes after a block of size 23 alloc'd
-==146602==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==146602==    by 0x1093D0: main (main.c:55)
-==146602== 
-==146602== Invalid read of size 1
-==146602==    at 0x483EF54: strlen (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==146602==    by 0x109A25: accept_string (parser.c:41)
-==146602==    by 0x10945D: main (main.c:79)
-==146602==  Address 0x4a582b7 is 0 bytes after a block of size 23 alloc'd
-==146602==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==146602==    by 0x1093D0: main (main.c:55)
-==146602== 
-==146602== Invalid read of size 1
-==146602==    at 0x109A84: accept_string (parser.c:34)
-==146602==    by 0x10945D: main (main.c:79)
-==146602==  Address 0x4a582b7 is 0 bytes after a block of size 23 alloc'd
-==146602==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==146602==    by 0x1093D0: main (main.c:55)
-==146602== 
-Parsing ../data/string.txt failed
-==146602== 
-==146602== HEAP SUMMARY:
-==146602==     in use at exit: 143 bytes in 3 blocks
-==146602==   total heap usage: 6 allocs, 3 frees, 16,999 bytes allocated
-==146602== 
-==146602== LEAK SUMMARY:
-==146602==    definitely lost: 96 bytes in 1 blocks
-==146602==    indirectly lost: 47 bytes in 2 blocks
-==146602==      possibly lost: 0 bytes in 0 blocks
-==146602==    still reachable: 0 bytes in 0 blocks
-==146602==         suppressed: 0 bytes in 0 blocks
-==146602== Rerun with --leak-check=full to see details of leaked memory
-==146602== 
-==146602== For lists of detected and suppressed errors, rerun with: -s
-==146602== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)
-=======
-==149582== Memcheck, a memory error detector
-==149582== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==149582== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==149582== Command: ../json -s ../data/string.txt
-==149582== 
+==371937== Memcheck, a memory error detector
+==371937== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==371937== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==371937== Command: ../json -s ../data/string.txt
+==371937== 
 STRING: 'I am a simple string'
 Success!
-==149582== 
-==149582== HEAP SUMMARY:
-==149582==     in use at exit: 472 bytes in 1 blocks
-==149582==   total heap usage: 6 allocs, 5 frees, 17,085 bytes allocated
-==149582== 
-==149582== LEAK SUMMARY:
-==149582==    definitely lost: 0 bytes in 0 blocks
-==149582==    indirectly lost: 0 bytes in 0 blocks
-==149582==      possibly lost: 0 bytes in 0 blocks
-==149582==    still reachable: 472 bytes in 1 blocks
-==149582==         suppressed: 0 bytes in 0 blocks
-==149582== Rerun with --leak-check=full to see details of leaked memory
-==149582== 
-==149582== For lists of detected and suppressed errors, rerun with: -s
-==149582== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
+==371937== 
+==371937== HEAP SUMMARY:
+==371937==     in use at exit: 472 bytes in 1 blocks
+==371937==   total heap usage: 6 allocs, 5 frees, 19,061 bytes allocated
+==371937== 
+==371937== LEAK SUMMARY:
+==371937==    definitely lost: 0 bytes in 0 blocks
+==371937==    indirectly lost: 0 bytes in 0 blocks
+==371937==      possibly lost: 0 bytes in 0 blocks
+==371937==    still reachable: 472 bytes in 1 blocks
+==371937==         suppressed: 0 bytes in 0 blocks
+==371937== Rerun with --leak-check=full to see details of leaked memory
+==371937== 
+==371937== For lists of detected and suppressed errors, rerun with: -s
+==371937== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

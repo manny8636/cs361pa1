@@ -1,0 +1,12 @@
+--- outputs/EXTRA_json_several.txt	2022-02-15 14:30:58.479103366 -0500
++++ expected/EXTRA_json_several.txt	2021-01-25 15:27:24.000000000 -0500
+@@ -0,0 +1,9 @@
++Key-value pairs:
++{
++KEYS[a] = alpha
++KEYS[b] = beta
++KEYS[c] = gamma?
++KEYS[d] = 42
++KEYS[e] = 2.718281828459
++}
++Success!

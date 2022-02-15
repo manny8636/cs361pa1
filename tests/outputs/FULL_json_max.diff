@@ -1,0 +1,8 @@
+--- outputs/FULL_json_max.txt	2022-02-15 14:30:57.327092582 -0500
++++ expected/FULL_json_max.txt	2021-01-25 15:27:24.000000000 -0500
+@@ -0,0 +1,5 @@
++Key-value pairs:
++{
++KEYS[long long min] = -9223372036854775807
++}
++Success!

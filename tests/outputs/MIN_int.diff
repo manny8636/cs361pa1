@@ -1,0 +1,5 @@
+--- outputs/MIN_int.txt	2022-02-15 14:30:51.655039487 -0500
++++ expected/MIN_int.txt	2021-01-25 15:27:24.000000000 -0500
+@@ -0,0 +1,2 @@
++VALUE [integer]: 123
++Success!

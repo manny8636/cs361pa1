@@ -1,44 +1,20 @@
-<<<<<<< HEAD
-==146659== Memcheck, a memory error detector
-==146659== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==146659== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==146659== Command: ../json -i ../data/int_bad.txt
-==146659== 
-Parsing ../data/int_bad.txt failed
-==146659== 
-==146659== HEAP SUMMARY:
-==146659==     in use at exit: 4 bytes in 1 blocks
-==146659==   total heap usage: 4 allocs, 3 frees, 16,860 bytes allocated
-==146659== 
-==146659== LEAK SUMMARY:
-==146659==    definitely lost: 4 bytes in 1 blocks
-==146659==    indirectly lost: 0 bytes in 0 blocks
-==146659==      possibly lost: 0 bytes in 0 blocks
-==146659==    still reachable: 0 bytes in 0 blocks
-==146659==         suppressed: 0 bytes in 0 blocks
-==146659== Rerun with --leak-check=full to see details of leaked memory
-==146659== 
-==146659== For lists of detected and suppressed errors, rerun with: -s
-==146659== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-=======
-==149607== Memcheck, a memory error detector
-==149607== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==149607== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==149607== Command: ../json -i ../data/int_bad.txt
-==149607== 
-==149607== 
-==149607== HEAP SUMMARY:
-==149607==     in use at exit: 88 bytes in 1 blocks
-==149607==   total heap usage: 4 allocs, 3 frees, 8,872 bytes allocated
-==149607== 
-==149607== LEAK SUMMARY:
-==149607==    definitely lost: 88 bytes in 1 blocks
-==149607==    indirectly lost: 0 bytes in 0 blocks
-==149607==      possibly lost: 0 bytes in 0 blocks
-==149607==    still reachable: 0 bytes in 0 blocks
-==149607==         suppressed: 0 bytes in 0 blocks
-==149607== Rerun with --leak-check=full to see details of leaked memory
-==149607== 
-==149607== For lists of detected and suppressed errors, rerun with: -s
-==149607== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
+==372053== Memcheck, a memory error detector
+==372053== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==372053== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==372053== Command: ../json -i ../data/int_bad.txt
+==372053== 
+==372053== 
+==372053== HEAP SUMMARY:
+==372053==     in use at exit: 2,064 bytes in 1 blocks
+==372053==   total heap usage: 4 allocs, 3 frees, 10,848 bytes allocated
+==372053== 
+==372053== LEAK SUMMARY:
+==372053==    definitely lost: 2,064 bytes in 1 blocks
+==372053==    indirectly lost: 0 bytes in 0 blocks
+==372053==      possibly lost: 0 bytes in 0 blocks
+==372053==    still reachable: 0 bytes in 0 blocks
+==372053==         suppressed: 0 bytes in 0 blocks
+==372053== Rerun with --leak-check=full to see details of leaked memory
+==372053== 
+==372053== For lists of detected and suppressed errors, rerun with: -s
+==372053== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -1,0 +1,9 @@
+--- outputs/EXTRA_json_multiple.txt	2022-02-15 14:30:57.871097674 -0500
++++ expected/EXTRA_json_multiple.txt	2021-01-25 15:27:24.000000000 -0500
+@@ -0,0 +1,6 @@
++Key-value pairs:
++{
++KEYS[first] = 15
++KEYS[second] = value
++}
++Success!

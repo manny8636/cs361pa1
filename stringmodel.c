@@ -56,26 +56,11 @@ static action_t const _effect[NSTR_STATES][NSTR_EVENTS] = {
   { NULL, NULL, NULL, NULL, NULL, NULL }, // STR_FINISH
   { NULL, NULL, NULL, NULL, NULL, NULL }  // STR_ERROR
 };
-<<<<<<< HEAD
 
 // static action_t const _entryArr[NSTR_STATES] =
 //     {NULL, NULL}; // NEW
 
 /* Return an FSM that links to these internals */
-fsm_t *
-string_init(char const *input)
-=======
-// /////////////////// EFFECT FUNCTIONS ////////////////////
-static state_t
-parse_transition (fsm_t *fsm, event_t event, action_t *effect, action_t *entry)
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
-{
-  if (fsm->state >= NON_STR || _transitions[fsm->state][event] == NON_STR)
-    return -1;
-  *effect = _effect[fsm->state][event];
-  state_t next = _transitions[fsm->state][event];
-  return next;
-}
 
 /* Used to move beyond the quote at the end of the string */
 static void
@@ -111,7 +96,6 @@ AppendCharacter (fsm_t *fsm)
 /* Replaces a control sequence (\\ or \") by putting just the
    latter character into the buffer */
 static void
-<<<<<<< HEAD
 ReplaceCharacter(fsm_t *fsm)
 {
    // assert(fsm->length < fsm->buffer_size - 1);
@@ -121,22 +105,17 @@ ReplaceCharacter(fsm_t *fsm)
 /* Given FSM instance and event, perform the table lookups */
 static state_t
 parse_transition(fsm_t *fsm, event_t event, action_t *effect, action_t *entry)
-=======
-ReplaceCharacter (fsm_t *fsm)
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
 {
-   assert (fsm != NULL);
-   // assert (fsm->length < BUFFER_LENGTH - 1);
-   fsm->buffer[fsm->length++] = *fsm->current;
+  if (fsm->state >= NON_STR || _transitions[fsm->state][event] == NON_STR)
+      return -1;
+  *effect = _effect[fsm->state][event];
+  state_t next = _transitions[fsm->state][event];
+  return next;;
 }
 
 /* Reports an invalid escape-code character */
 static void
 SyntaxError (fsm_t *fsm)
 {
-<<<<<<< HEAD
-   printf("SYNTAX ERROR: '%c%c' is not a valid escape code\n", *fsm->last_appended_char, *fsm->current);
-=======
    printf ("SYNTAX ERROR: '\\%c' is not a valid escape code\n", *fsm->current);
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
 }

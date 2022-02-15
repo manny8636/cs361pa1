@@ -1,20 +1,12 @@
 Running suite(s): Default
 
 ======================================
-<<<<<<< HEAD
-=======
-PARTIAL CREDIT: string_escapes
-This test case should succeed in parsing the input value
-"i \"am\" a back \\ slash"
-
-======================================
 PARTIAL CREDIT: string_invalid_escape
 This test case should NOT succeed in parsing the input value
 "tabs \t are not allowed"
 SYNTAX ERROR: '\t' is not a valid escape code
 
 ======================================
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
 PARTIAL CREDIT: string_missing_quotes
 This test case should NOT succeed in parsing the input value
 missing quote
@@ -38,20 +30,11 @@ This test case should succeed in parsing the input value
 FULL CREDIT: object_bad_id
 This test case should succeed in parsing the input value
 { hello : 1234 }
-<<<<<<< HEAD
-26%: Checks: 19, Failures: 12, Errors: 2
-public.c:21:F:Public:PART_string:0: Assertion 'accept_string (string, &str)' failed
+36%: Checks: 19, Failures: 12, Errors: 0
 public.c:34:F:Public:PART_integer:0: Assertion 'integer != ((void *)0)' failed
 public.c:50:F:Public:MIN_value_string:0: Assertion 'accept_value (value, &is_string, &str, &integer)' failed
 public.c:66:F:Public:FULL_object_string:0: Assertion 'result' failed
-private.c:26:E:Private:PART_string_escapes:0: (after this point) Received signal 11 (Segmentation fault)
-private.c:46:E:Private:PART_string_invalid_escape:0: (after this point) Received signal 11 (Segmentation fault)
-=======
-42%: Checks: 19, Failures: 11, Errors: 0
-public.c:34:F:Public:PART_integer:0: Assertion 'integer != ((void *)0)' failed
-public.c:50:F:Public:MIN_value_string:0: Assertion 'accept_value (value, &is_string, &str, &integer)' failed
-public.c:66:F:Public:FULL_object_string:0: Assertion 'result' failed
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
+private.c:30:F:Private:PART_string_escapes:0: Assertion 'str == "i \"am\" a back \\ slash"' failed: str == "i"a" a back\ slash", "i \"am\" a back \\ slash" == "i "am" a back \ slash"
 private.c:82:F:Private:PART_integer_single_digit:0: Assertion 'integer != ((void *)0)' failed
 private.c:100:F:Private:PART_integer_zero:0: Assertion 'integer != ((void *)0)' failed
 private.c:118:F:Private:PART_integer_negative:0: Assertion 'integer != ((void *)0)' failed

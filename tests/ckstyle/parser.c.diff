@@ -1,125 +1,8 @@
-<<<<<<< HEAD
---- ../parser.c	2022-02-14 17:11:46.127889937 -0500
-+++ ckstyle/parser.c.gnu	2022-02-14 17:13:40.996964200 -0500
-@@ -16,7 +16,8 @@
-    access to local variables here; instead, you should extend the fsm_t
-    declaration to include helper variables, such as a buffer to copy the
-    input bytes into.) */
--bool accept_string(fsm_t *fsm, char **result)
-+bool
-+accept_string (fsm_t *fsm, char **result)
- {
- 
-   // should the generic handle_event be called here?
-@@ -32,36 +33,36 @@
-   int cnt = 0;
- 
-   while (*walker != '\0')
--  {
--    input_ch = walker[0];
--    // if (!strcmp(input_ch, '\"') && cnt == 0)
--    if (input_ch == '\"' && cnt == 0)
--      evt = OPEN_QUOTE;
--    // else if (!strcmp(input_ch, '\"') && cnt == strlen(fsm->input))
--    else if (input_ch == '\"' && cnt == strlen(fsm->input))
--      evt = CLOSE_QUOTE;
--    // else if (!strcmp(input_ch, '\\') && !strcmp(prior_input_ch, '\\'))
--    else if (input_ch == '\\' && prior_input_ch == '\\')
--      evt = BACKSLASH;
--    // else if (!strcmp(input_ch, '\\'))
--    else if (input_ch == '\\')
--      evt = ESC_CHAR;
--    else
--      evt = NON_CTRL;
--
--    prior_input_ch = input_ch;
--    walker++;
--    cnt++;
-+    {
-+      input_ch = walker[0];
-+      // if (!strcmp(input_ch, '\"') && cnt == 0)
-+      if (input_ch == '\"' && cnt == 0)
-+        evt = OPEN_QUOTE;
-+      // else if (!strcmp(input_ch, '\"') && cnt == strlen(fsm->input))
-+      else if (input_ch == '\"' && cnt == strlen (fsm->input))
-+        evt = CLOSE_QUOTE;
-+      // else if (!strcmp(input_ch, '\\') && !strcmp(prior_input_ch, '\\'))
-+      else if (input_ch == '\\' && prior_input_ch == '\\')
-+        evt = BACKSLASH;
-+      // else if (!strcmp(input_ch, '\\'))
-+      else if (input_ch == '\\')
-+        evt = ESC_CHAR;
-+      else
-+        evt = NON_CTRL;
-+
-+      prior_input_ch = input_ch;
-+      walker++;
-+      cnt++;
- 
--    handle_event(fsm, evt);
--  }
-+      handle_event (fsm, evt);
-+    }
- 
-   // when accepting is done, we point the result to the fsm built buffer
-   if (fsm->final)
--  {
--    result = &fsm->buffer;
--    fsm->final = true;
--  }
-+    {
-+      result = &fsm->buffer;
-+      fsm->final = true;
-+    }
- 
-   return false;
- }
-@@ -76,7 +77,8 @@
-    should be copied into the location pointed to by the call-by-reference
-    parameter value and the function should return true. Otherwise, return
-    false. */
--bool accept_integer(fsm_t *fsm, int64_t *value)
-+bool
-+accept_integer (fsm_t *fsm, int64_t *value)
- {
-   return false;
- }
-@@ -89,7 +91,8 @@
-    Returns true only if a valid string or integer value was accepted.
-    If a value was successully parsed, sets the is_string, string, and
-    value call-by-reference parameters as appropriate. */
--bool accept_value(fsm_t *fsm, bool *is_string, char **string, int64_t *value)
-+bool
-+accept_value (fsm_t *fsm, bool *is_string, char **string, int64_t *value)
- {
-   return false;
- }
-@@ -128,7 +131,8 @@
-=======
---- ../parser.c	2022-02-14 16:56:01.000000000 -0500
-+++ ckstyle/parser.c.gnu	2022-02-14 17:13:44.696998799 -0500
-@@ -7,9 +7,9 @@
- #include <stdlib.h>
- #include <string.h>
- 
-+#include "intmodel.h"
- #include "statemodel.h"
- #include "stringmodel.h"
--#include "intmodel.h"
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
- 
- /* Begins at fsm->current and tries to identify a string in the given
-    input data. A string begins and ends with ". In between, only two
-@@ -26,53 +26,55 @@
+--- ../parser.c	2022-02-14 21:57:03.196496930 -0500
++++ ckstyle/parser.c.gnu	2022-02-15 14:30:59.323111266 -0500
+@@ -25,49 +25,51 @@
  accept_string (fsm_t *fsm, char **result)
  {
-   if (*fsm->current != '\"')
--  {
--    return false;
--  }
-+    {
-+      return false;
-+    }
    while (*fsm->current != '\0')
 -  {
 -    switch (*fsm->current)
@@ -127,12 +10,26 @@
 -      case '\"':
 -      {
 -        if (fsm->state == STR_INIT)
--        {
--          handle_event(fsm, OPEN_QUOTE);
--        } else
 +      switch (*fsm->current)
          {
+-          handle_event(fsm, OPEN_QUOTE);
+-        } else
+-        {
 -          handle_event(fsm, CLOSE_QUOTE);
+-        }
+-        break;
+-      }
+-      case '\\':
+-      {
+-        handle_event(fsm, BACKSLASH);
+-        fsm->current++;
+-        if (*fsm->current == '\\' || *fsm->current == '\"')
+-        {
+-          handle_event(fsm, ESC_CHAR);
+-        } else
+-        {
+-          handle_event(fsm, NO_ESC);
+-          return false;
 +        case '\"':
 +          {
 +            if (fsm->state == STR_INIT)
@@ -166,20 +63,6 @@
 +            break;
 +          }
          }
--        break;
--      }
--      case '\\':
--      {
--        handle_event(fsm, BACKSLASH);
--        fsm->current++;
--        if (*fsm->current == '\\' || *fsm->current == '\"')
--        {
--          handle_event(fsm, ESC_CHAR);
--        } else
--        {
--          handle_event(fsm, NO_ESC);
--          return false;
--        }
 -        break;
 -      }
 -      default:

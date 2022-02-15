@@ -1,5 +1,2 @@
-<<<<<<< HEAD
-=======
-STRING: 'This "is" okay to do. He…'
+STRING: 'This"i" okay to do. Here is a\ backslash.'
 Success!
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46

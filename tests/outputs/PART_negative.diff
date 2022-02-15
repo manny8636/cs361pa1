@@ -1,12 +1,5 @@
-<<<<<<< HEAD
---- outputs/PART_negative.txt	2022-02-14 17:13:29.640858005 -0500
+--- outputs/PART_negative.txt	2022-02-15 14:30:48.387008896 -0500
 +++ expected/PART_negative.txt	2021-01-25 15:27:24.000000000 -0500
-@@ -1 +1,2 @@
--Parsing ../data/negative.txt failed
-=======
---- outputs/PART_negative.txt	2022-02-14 17:19:50.520428242 -0500
-+++ expected/PART_negative.txt	2022-02-13 17:48:24.374294593 -0500
 @@ -0,0 +1,2 @@
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
 +INTEGER: -25
 +Success!

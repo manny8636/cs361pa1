@@ -1,0 +1,6 @@
+--- outputs/FULL_json_bad_id.txt	2022-02-15 14:30:55.603076444 -0500
++++ expected/FULL_json_bad_id.txt	2021-01-25 15:27:24.000000000 -0500
+@@ -0,0 +1,3 @@
++SYNTAX ERROR: '\t' is not a valid escape code
++SYNTAX ERROR: Could not process text beginning at '"Not \t valid": "value" }'
++Parsing ../data/json_bad_id.txt failed
