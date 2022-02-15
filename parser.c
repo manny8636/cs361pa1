@@ -9,10 +9,6 @@
 
 #include "statemodel.h"
 #include "stringmodel.h"
-<<<<<<< HEAD
-=======
-#include "intmodel.h"
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
 
 /* Begins at fsm->current and tries to identify a string in the given
    input data. A string begins and ends with ". In between, only two
@@ -28,49 +24,6 @@
 bool
 accept_string (fsm_t *fsm, char **result)
 {
-<<<<<<< HEAD
-
-  // should the generic handle_event be called here?
-
-  // read the input string in a loop
-
-  event_t evt = NIL_CHAR;
-  char input_ch = ' ';
-  char prior_input_ch = ' ';
-
-  // fsm->input
-  const char *walker = fsm->input;
-  int cnt = 0;
-
-  while (*walker != '\0')
-  {
-    input_ch = walker[0];
-    // if (!strcmp(input_ch, '\"') && cnt == 0)
-    if (input_ch == '\"' && cnt == 0)
-      evt = OPEN_QUOTE;
-    // else if (!strcmp(input_ch, '\"') && cnt == strlen(fsm->input))
-    else if (input_ch == '\"' && cnt == strlen(fsm->input))
-      evt = CLOSE_QUOTE;
-    // else if (!strcmp(input_ch, '\\') && !strcmp(prior_input_ch, '\\'))
-    else if (input_ch == '\\' && prior_input_ch == '\\')
-      evt = BACKSLASH;
-    // else if (!strcmp(input_ch, '\\'))
-    else if (input_ch == '\\')
-      evt = ESC_CHAR;
-    else
-      evt = NON_CTRL;
-
-    prior_input_ch = input_ch;
-    walker++;
-    cnt++;
-
-    handle_event(fsm, evt);
-=======
-  if (*fsm->current != '\"')
-  {
-    return false;
->>>>>>> 149606adc8b3f0cb79ed9f7c590375c37f62be46
-  }
   while (*fsm->current != '\0')
   {
     switch (*fsm->current)
